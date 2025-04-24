@@ -1,0 +1,227 @@
+/* Modern Quiz Generator Styles */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --success-color: #4cc9f0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+    background-color: #f0f2f5;
+    color: var(--dark-color);
+    line-height: 1.6;
+    padding: 2rem;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .input-group {
+    display: flex;
+    margin: 1.5rem 0;
+    max-width: 600px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #jobInput {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+  }
+  
+  #jobInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.25);
+  }
+  
+  .generate-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .generate-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  #quizContainer {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+  }
+  
+  .question-card {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--light-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .question {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+  
+  .options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .option:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+  }
+  
+  .option input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+  }
+  
+  .option label {
+    cursor: pointer;
+    flex-grow: 1;
+  }
+  
+  #submitBtn {
+    display: none;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: var(--transition);
+  }
+  
+  #submitBtn:hover {
+    background-color: #059669;
+  }
+  
+  /* Loading state */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .loading::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ddd;
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Result styles */
+  .result-container {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: var(--border-radius);
+  }
+  
+  .result-message {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1rem 0;
+  }
+  
+  .score-highlight {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+    
+    .input-group {
+      flex-direction: column;
+    }
+    
+    #jobInput {
+      border-radius: var(--border-radius);
+      margin-bottom: 0.5rem;
+    }
+    
+    .generate-btn {
+      border-radius: var(--border-radius);
+    }
+    
+    #quizContainer {
+      padding: 1rem;
+    }
+  }

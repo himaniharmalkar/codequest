@@ -1,0 +1,138 @@
+{
+  "python": [
+    {
+      "question": "What is the output of 'print(2 ** 3)' in Python?",
+      "options": [
+        { "text": "8", "is_correct": true },
+        { "text": "6", "is_correct": false },
+        { "text": "5", "is_correct": false },
+        { "text": "Error", "is_correct": false }
+      ]
+    },
+    {
+      "question": "Which of the following is not a core data type in Python?",
+      "options": [
+        { "text": "DataFrame", "is_correct": true },
+        { "text": "List", "is_correct": false },
+        { "text": "Dictionary", "is_correct": false },
+        { "text": "Tuple", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What does the 'self' keyword represent in Python?",
+      "options": [
+        { "text": "Reference to the current instance of the class", "is_correct": true },
+        { "text": "Reference to the parent class", "is_correct": false },
+        { "text": "Reference to the module", "is_correct": false },
+        { "text": "It's a reserved keyword", "is_correct": false }
+      ]
+    },
+    {
+      "question": "Which of these is not a valid way to create a list in Python?",
+      "options": [
+        { "text": "list(1, 2, 3)", "is_correct": true },
+        { "text": "[1, 2, 3]", "is_correct": false },
+        { "text": "list((1, 2, 3))", "is_correct": false },
+        { "text": "list(range(3))", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What is the correct way to open a file named 'data.txt' for reading in Python?",
+      "options": [
+        { "text": "open('data.txt', 'r')", "is_correct": true },
+        { "text": "open('data.txt', 'w')", "is_correct": false },
+        { "text": "file('data.txt')", "is_correct": false },
+        { "text": "read('data.txt')", "is_correct": false }
+      ]
+    }
+  ],
+  "sql": [
+    {
+      "question": "Which SQL statement is used to extract data from a database?",
+      "options": [
+        { "text": "SELECT", "is_correct": true },
+        { "text": "EXTRACT", "is_correct": false },
+        { "text": "GET", "is_correct": false },
+        { "text": "OPEN", "is_correct": false }
+      ]
+    },
+    {
+      "question": "Which SQL clause is used to filter records?",
+      "options": [
+        { "text": "WHERE", "is_correct": true },
+        { "text": "FILTER", "is_correct": false },
+        { "text": "HAVING", "is_correct": false },
+        { "text": "CONDITION", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What does JOIN do in SQL?",
+      "options": [
+        { "text": "Combines rows from two or more tables", "is_correct": true },
+        { "text": "Creates a new table", "is_correct": false },
+        { "text": "Modifies existing data", "is_correct": false },
+        { "text": "Deletes duplicate records", "is_correct": false }
+      ]
+    }
+  ],
+  "java": [
+    {
+      "question": "Which is not a feature of Java?",
+      "options": [
+        { "text": "Pointers", "is_correct": true },
+        { "text": "Object-oriented", "is_correct": false },
+        { "text": "Platform independent", "is_correct": false },
+        { "text": "Automatic memory management", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What is the entry point of a Java program?",
+      "options": [
+        { "text": "public static void main(String[] args)", "is_correct": true },
+        { "text": "public void main()", "is_correct": false },
+        { "text": "static void start()", "is_correct": false },
+        { "text": "void execute()", "is_correct": false }
+      ]
+    }
+  ],
+  "javascript": [
+    {
+      "question": "Which function is used to parse a string to Integer in JavaScript?",
+      "options": [
+        { "text": "parseInt()", "is_correct": true },
+        { "text": "parseInteger()", "is_correct": false },
+        { "text": "Int.parse()", "is_correct": false },
+        { "text": "Integer.parse()", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What will be the output of console.log(typeof NaN)?",
+      "options": [
+        { "text": "number", "is_correct": true },
+        { "text": "NaN", "is_correct": false },
+        { "text": "undefined", "is_correct": false },
+        { "text": "object", "is_correct": false }
+      ]
+    }
+  ],
+  "general": [
+    {
+      "question": "What is the primary purpose of version control systems like Git?",
+      "options": [
+        { "text": "Track changes to files and collaborate", "is_correct": true },
+        { "text": "Compile code into executables", "is_correct": false },
+        { "text": "Debug application errors", "is_correct": false },
+        { "text": "Test application functionality", "is_correct": false }
+      ]
+    },
+    {
+      "question": "What does API stand for in software development?",
+      "options": [
+        { "text": "Application Programming Interface", "is_correct": true },
+        { "text": "Automated Program Interaction", "is_correct": false },
+        { "text": "Application Process Integration", "is_correct": false },
+        { "text": "Advanced Programming Implementation", "is_correct": false }
+      ]
+    }
+  ]
+}

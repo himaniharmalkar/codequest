@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Test Series</title>
+    <!--Link to the external CSS file-->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add Chart.js for pie chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    #testIntro{ 
+        background: linear-gradient(135deg, #ff6ac1, #7386ff);
+    }
+    .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .question-set {
+        display: none;
+    }
+    .question-set.active {
+        display: block;
+    }
+</style>
+<body class="bg-gray-100 font-sans">
+    <!--Nav bar copied-->
+    <div class="main-hero">
+        <nav class="navbar navbar-expand-lg bg-body-light sticky-top">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div style="display: flex; align-items: center;">
+                    <img
+                        width="40"
+                        height="40"
+                        src="https://img.icons8.com/ios/50/education.png"
+                        alt="education"
+                    />&nbsp;
+                    <b style="color: #e9cedf !important;">Code Quest</b>
+                </div>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                    Test Series
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="java-test.html">Java</a>
+                    <a class="dropdown-item" href="python-test.html">Python</a>
+                    <a class="dropdown-item" href="cpp-test.html">C++</a>
+                  </div>
+                </li>
+                <li>
+                  <a class="nav-link" href="ai-quiz-generator.html">Quiz Generator</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+              </ul>
+              <form class="d-flex ms-2" role="search">
+                <button
+                  class="btn rounded-pill px-4 me-2"
+                  type="submit"
+                  style="font-size: 0.9rem !important; background-color: #ff9f67"
+                >
+                <a href="/signup.html" style="text-decoration: none; color: white;">Sign Up</a>
+                </button>
+              </form>
+              <form class="d-flex" role="search">
+                <button
+                  class="btn rounded-pill px-4 me-2"
+                  type="submit"
+                  style="font-size: 0.9rem !important; background-color: #ff9f67; color: white !important;"
+                >
+                <a href="/login.html" style="text-decoration: none;">Login</a>
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+    </div>
+    <!--Nav bar copied-->
+    <div class="bg-gray-100 font-sans">
+    <main class="container mx-auto px-6 py-8">
+        <section id="testIntro" class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Adaptive C++ Test Series</h1>
+            <p class="text-gray-600 mb-6">Choose your level and start testing your C++ knowledge!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Basic Level</h2>
+                    <p class="text-gray-600 mb-4">10 adaptive questions covering basic C++ concepts.</p>
+                    <button id="basicBtn" onclick="startTest('basic')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        Start Test
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Intermediate Level</h2>
+                    <p class="text-gray-600 mb-4">10 adaptive questions covering intermediate C++ concepts.</p>
+                    <button id="intermediateBtn" onclick="startTest('intermediate')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 locked" disabled>
+                        Start Test
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Advanced Level</h2>
+                    <p class="text-gray-600 mb-4">10 adaptive questions covering advanced C++ concepts.</p>
+                    <button id="advancedBtn" onclick="startTest('advanced')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 locked" disabled>
+                        Start Test
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="testSection" class="hidden bg-white shadow-md rounded-lg p-6">
+            <h2 id="testLevelTitle" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+            <div id="timer" class="text-xl font-semibold text-gray-700 mb-4"></div>
+            <div id="questionSetNav" class="mb-4 flex space-x-4">
+                <button id="prevSet" class="bg-blue-500 text-white px-4 py-2 rounded transition duration-300" onclick="showQuestionSet('first')" disabled>Previous</button>
+                <button id="nextSet" class="bg-blue-500 text-white px-4 py-2 rounded transition duration-300" onclick="showQuestionSet('second')" style="display: none;">Next</button>
+            </div>
+            <div id="questions" class="space-y-6">
+                <div id="firstSet" class="question-set active"></div>
+                <div id="secondSet" class="question-set"></div>
+            </div>
+            <div id="loader" class="hidden flex justify-center items-center my-8">
+                <div class="loader"></div>
+            </div>
+            <button onclick="submitTest()" class="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Submit Test
+            </button>
+        </section>
+
+        <section id="scoreSection" class="hidden bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Test Results</h2>
+            <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+                <div class="w-full md:w-1/2">
+                    <canvas id="scoreChart" width="100%" height="300"></canvas>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <canvas id="topicChart" width="100%" height="300"></canvas>
+                </div>
+            </div>
+            <div id="comprehensiveResults" class="space-y-4 mt-6"></div>
+            <div class="mt-6 flex justify-center space-x-4">
+                <button id="retryBtn" onclick="retryTest()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Retry
+                </button>
+                <button id="nextLevelBtn" onclick="goToNextLevel()" class="hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Go to Next Level
+                </button>
+            </div>
+        </section>
+    </main>
+</div>
+
+    <!-- Add Bootstrap JS and jQuery for dropdown functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const questions = {
+            basic: [
+                { question: "What is C++?", options: ["A programming language", "A type of coffee", "An operating system", "A game engine"], correct: 0, topic: "Introduction" },
+                { question: "Who developed C++?", options: ["Bjarne Stroustrup", "James Gosling", "Dennis Ritchie", "Guido van Rossum"], correct: 0, topic: "Introduction" },
+                { question: "Which of the following is a valid C++ variable declaration?", options: ["int 1x = 10;", "int x = 10;", "1x = int 10;", "int x; x = 10;"], correct: 1, topic: "Syntax" },
+                { question: "Which of these is used for comments in C++?", options: ["// comment", "# comment", "/* comment */", "Both A and C"], correct: 3, topic: "Syntax" },
+                { question: "What is the correct syntax to include a header file?", options: ["#include <iostream>", "include <iostream>", "#include iostream", "iostream.h"], correct: 0, topic: "Syntax" },
+                { question: "What does 'cin' stand for in C++?", options: ["Console input", "C input", "C internal", "None of the above"], correct: 0, topic: "Input/Output" },
+                { question: "What is the output of the following code: cout << 5 + 3 * 2;", options: ["11", "16", "13", "8"], correct: 2, topic: "Operators" },
+                { question: "What is a class in C++?", options: ["A blueprint for creating objects", "A type of variable", "A function type", "None of the above"], correct: 0, topic: "OOP" },
+                { question: "Which operator is used for inheritance in C++?", options: ["::", "->", ":", "is"], correct: 2, topic: "OOP" },
+                { question: "What does the 'new' keyword do?", options: ["Allocates memory", "Creates a variable", "Defines a class", "None of the above"], correct: 0, topic: "Memory Management" }
+            ],
+            intermediate: [
+                { question: "What is polymorphism in C++?", options: ["The ability of a function to process different data types", "The ability to overload operators", "Both A and B", "None of the above"], correct: 2, topic: "OOP" },
+                { question: "What is a pure virtual function?", options: ["A function with no definition", "A function that cannot be called", "A function with a default argument", "A function that returns nothing"], correct: 0, topic: "OOP" },
+                { question: "Which keyword is used to prevent a class from being inherited?", options: ["final", "virtual", "private", "sealed"], correct: 0, topic: "OOP" },
+                { question: "Which of the following is the correct way to declare a pointer?", options: ["int ptr;", "int *ptr;", "int &ptr;", "pointer int ptr;"], correct: 1, topic: "Pointers" },
+                { question: "What is the purpose of the 'this' pointer?", options: ["To refer to the current object", "To refer to the parent class", "To refer to the base class", "None of the above"], correct: 0, topic: "OOP" },
+                { question: "What is the default access modifier for class members in C++?", options: ["public", "private", "protected", "friend"], correct: 1, topic: "OOP" },
+                { question: "Which STL container is implemented as a doubly linked list?", options: ["vector", "list", "set", "map"], correct: 1, topic: "STL" },
+                { question: "What does the 'static' keyword do?", options: ["Makes a variable local to the function", "Allocates memory for a variable", "Prevents variable from being destroyed", "None of the above"], correct: 2, topic: "Advanced Concepts" },
+                { question: "What is the output of the following code: int a = 10; cout << a++;", options: ["10", "11", "Error", "None of the above"], correct: 0, topic: "Operators" },
+                { question: "Which of the following is a valid type of polymorphism?", options: ["Compile-time polymorphism", "Run-time polymorphism", "Both A and B", "None of the above"], correct: 2, topic: "OOP" }
+            ],
+            advanced: [
+                { question: "What is a template in C++?", options: ["A blueprint for creating classes", "A function that takes a class as an argument", "A generic class or function", "None of the above"], correct: 2, topic: "Templates" },
+                { question: "What is RAII in C++?", options: ["Resource Acquisition Is Initialization", "Rapid Application Interface Implementation", "Return Argument Interface Identifier", "None of the above"], correct: 0, topic: "Advanced Concepts" },
+                { question: "What does the 'override' keyword do?", options: ["Defines a new function", "Replaces a base class function", "Defines a virtual function", "None of the above"], correct: 1, topic: "OOP" },
+                { question: "What is the purpose of the 'friend' keyword?", options: ["To grant access to private members of a class", "To declare global variables", "To create a new namespace", "None of the above"], correct: 0, topic: "OOP" },
+                { question: "What are lambda expressions in C++?", options: ["Anonymous functions", "Function templates", "Overloaded operators", "None of the above"], correct: 0, topic: "Advanced Concepts" },
+                { question: "What is the significance of 'nullptr' in C++?", options: ["Represents a null pointer", "Represents an undefined variable", "Represents an empty class", "None of the above"], correct: 0, topic: "Pointers" },
+                { question: "Which keyword is used to declare a destructor in C++?", options: ["~", "destroy", "delete", "dispose"], correct: 0, topic: "OOP" },
+                { question: "What is an iterator in C++?", options: ["A pointer to an element in a container", "A reference to a container", "A function that returns a container", "None of the above"], correct: 0, topic: "STL" },
+                { question: "What is a virtual destructor?", options: ["A destructor that can be overridden", "A destructor that cannot be called", "A destructor that allocates memory", "None of the above"], correct: 0, topic: "OOP" },
+                { question: "What does the 'const' keyword signify?", options: ["The variable is constant and cannot be changed", "The variable can be changed", "The variable is a pointer", "None of the above"], correct: 0, topic: "Advanced Concepts" }
+            ]
+        };
+        
+        let timer;
+        let timeLeft = 10 * 60; // 10 minutes
+        let currentLevel = '';
+        let userAnswers = [];
+        let topicPerformance = {};
+        
+        // Initialize buttons as locked except for basic
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('intermediateBtn').disabled = true;
+            document.getElementById('intermediateBtn').classList.add('opacity-50');
+            document.getElementById('advancedBtn').disabled = true;
+            document.getElementById('advancedBtn').classList.add('opacity-50');
+        });
+
+        function startTest(level) {
+            currentLevel = level;
+            document.getElementById('testIntro').classList.add('hidden');
+            document.getElementById('testSection').classList.remove('hidden');
+            document.getElementById('testLevelTitle').innerText = `${capitalize(level)} Level C++ Test`;
+            
+            userAnswers = [];
+            timeLeft = 10 * 60; // Reset timer
+
+            // Split questions into two sets
+            const levelQuestions = questions[level];
+            const firstSetQuestions = levelQuestions.slice(0, 5);
+            const secondSetQuestions = levelQuestions.slice(5, 10);
+            
+            // Populate first set
+            populateQuestionSet('firstSet', firstSetQuestions, 0);
+            
+            // Populate second set
+            populateQuestionSet('secondSet', secondSetQuestions, 5);
+            
+            // Show first set, hide second set
+            document.getElementById('firstSet').classList.add('active');
+            document.getElementById('secondSet').classList.remove('active');
+            
+            // Setup navigation buttons
+            if(levelQuestions.length > 5) {
+                document.getElementById('nextSet').style.display = 'block';
+            } else {
+                document.getElementById('nextSet').style.display = 'none';
+            }
+            
+            document.getElementById('prevSet').disabled = true;
+            
+            startTimer();
+        }
+        
+        function populateQuestionSet(setId, questionsArray, startIndex) {
+            const questionContainer = document.getElementById(setId);
+            questionContainer.innerHTML = '';
+            
+            questionsArray.forEach((q, index) => {
+                const actualIndex = startIndex + index;
+                questionContainer.innerHTML += `
+                    <div class="bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-lg font-semibold">${actualIndex + 1}. ${q.question}</p>
+                        <div class="mt-2 space-y-2">
+                            ${q.options.map((opt, i) => `
+                                <div class="flex items-center">
+                                    <input type="radio" id="q${actualIndex}_opt${i}" name="question${actualIndex}" value="${i}" class="mr-2">
+                                    <label for="q${actualIndex}_opt${i}">${opt}</label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function showQuestionSet(set) {
+            if(set === 'first') {
+                document.getElementById('firstSet').classList.add('active');
+                document.getElementById('secondSet').classList.remove('active');
+                document.getElementById('prevSet').disabled = true;
+                document.getElementById('nextSet').disabled = false;
+            } else {
+                document.getElementById('firstSet').classList.remove('active');
+                document.getElementById('secondSet').classList.add('active');
+                document.getElementById('prevSet').disabled = false;
+                document.getElementById('nextSet').disabled = true;
+            }
+        }
+
+        function startTimer() {
+            clearInterval(timer); // Clear any existing timer
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function submitTest() {
+            clearInterval(timer);
+            
+            const levelQuestions = questions[currentLevel];
+            let correctCount = 0;
+            topicPerformance = {};
+            
+            // Initialize topic performance tracking
+            levelQuestions.forEach(q => {
+                if (!topicPerformance[q.topic]) {
+                    topicPerformance[q.topic] = { correct: 0, total: 0 };
+                }
+                topicPerformance[q.topic].total++;
+            });
+            
+            // Calculate score
+            levelQuestions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption && parseInt(selectedOption.value) === q.correct) {
+                    correctCount++;
+                    topicPerformance[q.topic].correct++;
+                }
+            });
+            
+            // Update score section
+            document.getElementById('testSection').classList.add('hidden');
+            document.getElementById('scoreSection').classList.remove('hidden');
+            
+            // Create score chart
+            const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+            new Chart(scoreCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Correct', 'Incorrect'],
+                    datasets: [{
+                        data: [correctCount, levelQuestions.length - correctCount],
+                        backgroundColor: ['#28a745', '#dc3545']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Overall Performance'
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Create topic performance chart
+            const topicLabels = Object.keys(topicPerformance);
+            const topicData = topicLabels.map(topic => 
+                (topicPerformance[topic].correct / topicPerformance[topic].total) * 100
+            );
+            
+            const topicCtx = document.getElementById('topicChart').getContext('2d');
+            new Chart(topicCtx, {
+                type: 'bar',
+                data: {
+                    labels: topicLabels,
+                    datasets: [{
+                        label: 'Performance by Topic (%)',
+                        data: topicData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Performance by Topic'
+                        }
+                    }
+                }
+            });
+            
+            // Generate comprehensive results
+            const resultsContainer = document.getElementById('comprehensiveResults');
+            resultsContainer.innerHTML = `
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">Test Summary</h3>
+                    <p>Level: ${capitalize(currentLevel)}</p>
+                    <p>Score: ${correctCount} out of ${levelQuestions.length} (${Math.round((correctCount/levelQuestions.length)*100)}%)</p>
+                    <p>Time Taken: ${10 - Math.floor(timeLeft/60)} minutes ${60 - (timeLeft % 60)} seconds</p>
+                </div>
+            `;
+            
+            // Show next level button if score is at least 70%
+            if (correctCount >= levelQuestions.length * 0.7) {
+                document.getElementById('nextLevelBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('nextLevelBtn').classList.add('hidden');
+            }
+        }
+
+        function goToNextLevel() {
+            if (currentLevel === 'basic') {
+                document.getElementById('intermediateBtn').disabled = false;
+                document.getElementById('intermediateBtn').classList.remove('opacity-50');
+                currentLevel = 'intermediate';
+            } else if (currentLevel === 'intermediate') {
+                document.getElementById('advancedBtn').disabled = false;
+                document.getElementById('advancedBtn').classList.remove('opacity-50');
+                currentLevel = 'advanced';
+            }
+            
+            document.getElementById('scoreSection').classList.add('hidden');
+            document.getElementById('testIntro').classList.remove('hidden');
+        }
+
+        function retryTest() {
+            document.getElementById('scoreSection').classList.add('hidden');
+            document.getElementById('testIntro').classList.remove('hidden');
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+</body>
+</html>

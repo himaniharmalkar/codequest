@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI - Recruitment Quiz Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="main-hero">
+    <nav class="navbar navbar-expand-lg bg-body-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img
+            width="40"
+            height="40"
+            src="https://img.icons8.com/ios/50/education.png"
+            alt="education"
+          />&nbsp;
+          <b style="color: #e9cedf !important;">Code Quest</b>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Test Series
+              </a>
+              <ul class="dropdown-menu" >
+                <li><a class="dropdown-item" href="java-test.html">Java</a></li>
+                <li><a class="dropdown-item" href="python-test.html">Python</a></li>
+                <li>
+                  <a class="dropdown-item" href="cpp-test.html">C++</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ai-quiz-generator.html">Quiz Generator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#contact">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#faq">FAQ's</a>
+            </li>
+          </ul>
+          <form class="d-flex ms-2" role="search">
+            <button
+              class="btn rounded-pill px-4 me-2"
+              type="submit"
+              style="font-size: 0.9rem !important; background-color: #ff9f67"
+            >
+            <a href="/signup.html" style="text-decoration: none; color: white;">Sign Up</a>
+            </button>
+          </form>
+          <form class="d-flex" role="search">
+            <button
+              class="btn rounded-pill px-4 me-2"
+              type="submit"
+              style="font-size: 0.9rem !important; background-color: #ff9f67; color: white !important;"
+            >
+            <a href="/login.html" style="text-decoration: none;">Login</a>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  
+  <div class="container main-content">
+    <section class="prompt-section">
+      <div class="prompt-container">
+        <div class="prompt-box">
+          <textarea id="prompt-input" placeholder="Describe the job role and required skills, or upload a job description..."></textarea>
+          <div class="prompt-actions">
+            <label for="file-upload" class="upload-button" title="Upload Job Description">
+              <i class="fas fa-paperclip"></i>
+              <input type="file" id="file-upload" accept=".pdf,.doc,.docx,.txt">
+            </label>
+            <button id="send-button" class="send-button">
+              Generate Quiz
+            </button>            
+          </div>
+        </div>
+        <div id="file-preview" class="file-preview">
+        </div>
+      </div>
+    </section>
+    
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Analyzing and generating quiz questions...</p>
+    </div>
+    
+    <section id="results" class="results-container">
+      <div class="results-header">
+        <h2>Your Generated Quiz</h2>
+      </div>
+      
+      <div id="quiz-preview" class="quiz-card">
+        <!-- Quiz preview content will be dynamically inserted here -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Quiz Page Modal -->
+  <div id="quiz-modal" class="quiz-page-modal">
+    <div class="quiz-page-content">
+      <div class="quiz-header">
+        <h2 id="quiz-title">Quiz Title</h2>
+        <div class="quiz-timer">
+          <i class="fas fa-clock"></i>
+          <span id="timer-display">00:00</span>
+        </div>
+      </div>
+      
+      <div id="quiz-questions">
+        <!-- Questions will be inserted here dynamically -->
+      </div>
+      
+      <div class="quiz-footer">
+        <button id="submit-quiz" class="btn btn-primary">Submit Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Modal -->
+  <div id="results-modal" class="results-page-modal">
+    <div class="results-page-content">
+      <div class="results-header">
+        <h2>Quiz Results</h2>
+        <button class="close-results" id="close-results">&times;</button>
+      </div>
+      
+      <div id="results-summary">
+        <!-- Results summary will be inserted here -->
+      </div>
+      
+      <div id="results-details">
+        <!-- Detailed results will be inserted here -->
+      </div>
+      
+      <div class="results-footer">
+        <button id="back-to-home" class="btn btn-primary">Back to Home</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="static/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
